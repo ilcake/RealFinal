@@ -1111,7 +1111,7 @@ public class ClientGui extends JFrame { //
 		}
 		//////////////////
 		mainCard.show(mainBOARD, "nowLoading");
-		gm = new Game();
+		// gm = new Game();
 		mg.searchMovie(type, what);
 
 		// Thread th = new Thread(this);
@@ -1120,7 +1120,7 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setSearchTable() {
-		gm.dispose();
+		// gm.dispose();
 		mainCard.show(mainBOARD, "pnMain");
 
 		if (scList.size() == 0) {
