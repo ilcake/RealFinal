@@ -26,15 +26,6 @@ public class ClientManager {
 	private ClientThread cht;
 	private String userId;
 	private User me;
-	private LoadingPanel ld;
-
-	public LoadingPanel getLd() {
-		return ld;
-	}
-
-	public void setLd(LoadingPanel ld) {
-		this.ld = ld;
-	}
 
 	public ChatGUI getCgui() {
 		return cgui;
@@ -157,17 +148,17 @@ public class ClientManager {
 		Object[] what = new Object[] { Data.GETNUMS, id };
 		whatTodo(what);
 	}
-	
+
 	public void getBestM() {
 		Object[] what = new Object[] { Data.GETBESTMOVIE };
 		whatTodo(what);
 	}
-	
+
 	public void getBestC() {
 		Object[] what = new Object[] { Data.GETBESTCOMMENT };
 		whatTodo(what);
 	}
-	
+
 	public void getBestL() {
 		Object[] what = new Object[] { Data.GETBESTLIKE };
 		whatTodo(what);

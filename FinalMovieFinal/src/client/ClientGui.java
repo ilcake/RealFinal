@@ -46,6 +46,7 @@ import javax.swing.table.DefaultTableModel;
 import client.chat.ChatGUI;
 import datas.Data;
 import datas.User;
+import game.Game;
 import vos.UserComment;
 import vos.MovieBoxInfo;
 import vos.MovieSearchInfo;
@@ -118,7 +119,6 @@ public class ClientGui extends JFrame { //
 	private JPanel mv2;
 	private String sMovieCD;
 	private JLabel lblNewLabel_5;
-	private LoadingPanel ld;
 	private JPanel pn_UserLike;
 	private JButton bt_mm1_3Return;
 	private JButton bt_mm1_4Return;
@@ -145,6 +145,7 @@ public class ClientGui extends JFrame { //
 	private JLabel lb_likeNum;
 	private JPanel pnLoading;
 	private JLabel lb_loading;
+	private Game gm;
 
 	private JLabel thumb_bestM, thumb_bestC, thumb_bestL; // 추가1
 
@@ -1110,6 +1111,7 @@ public class ClientGui extends JFrame { //
 		}
 		//////////////////
 		mainCard.show(mainBOARD, "nowLoading");
+		gm = new Game();
 		mg.searchMovie(type, what);
 
 		// Thread th = new Thread(this);
@@ -1118,6 +1120,7 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setSearchTable() {
+		gm.dispose();
 		mainCard.show(mainBOARD, "pnMain");
 
 		if (scList.size() == 0) {
