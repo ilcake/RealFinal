@@ -710,6 +710,12 @@ public class ClientGui extends JFrame { //
 		bt_trailer.setBounds(31, 435, 107, 27);
 		mv1.add(bt_trailer);
 
+		JLabel lblNewLabel_3 = new JLabel("@Copywrite by Park, Choe  ");
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 12));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNewLabel_3.setBounds(182, 435, 235, 27);
+		mv1.add(lblNewLabel_3);
+
 		mv2 = new JPanel();
 		pnMovie.add(mv2);
 		mv2.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -1361,6 +1367,8 @@ public class ClientGui extends JFrame { //
 		// 원래 좋아하던거면 없애주기???
 		mg.userLike(whoAmI, msi);
 		mg.getIsLike(whoAmI, msi.getMvCode());
+
+		mg.getBestL();
 	}
 
 	public void setImgicons() {
@@ -1400,30 +1408,10 @@ public class ClientGui extends JFrame { //
 
 	public void reactionIsItLike(int reaction) {
 		if (reaction == Data.USERLIKETHIS) {
-			// ImageIcon ig = new ImageIcon("./img/like.png");
-			// Image image = ig.getImage();
-			// Image reSized = image.getScaledInstance(50, 50,
-			// Image.SCALE_SMOOTH);
-			// ig = new ImageIcon(reSized);
 			lb_isLike.setIcon(likeg);
-			// bt_mv2Like.setText("좋아요취소");
-			// ImageIcon cancelBt = new ImageIcon("img/cancelBt.png");
-			// Image cancel = cancelBt.getImage();
-			// cancel = cancel.getScaledInstance(107, 33, Image.SCALE_SMOOTH);
-			// cancelBt = new ImageIcon(cancel);
 			bt_mv2Like.setIcon(cancelBt);
 		} else {
-			// ImageIcon disLike = new ImageIcon("./img/dislike.png");
-			// Image image = disLike.getImage();
-			// Image reSized = image.getScaledInstance(50, 50,
-			// Image.SCALE_SMOOTH);
-			// disLike = new ImageIcon(reSized);
 			lb_isLike.setIcon(disLike);
-			// bt_mv2Like.setText("좋아요");
-			// ImageIcon movieLikeBt = new ImageIcon("img/movieLikeBt.png");
-			// Image like = movieLikeBt.getImage();
-			// like = like.getScaledInstance(107, 33, Image.SCALE_SMOOTH);
-			// movieLikeBt = new ImageIcon(like);
 			bt_mv2Like.setIcon(movieLikeBt);
 		}
 	}
@@ -1530,6 +1518,9 @@ public class ClientGui extends JFrame { //
 		}
 		mv2_panel.revalidate();
 		this.revalidate();
+
+		mg.getBestM();// 여기가 맞나? 그리고
+		mg.getBestC();
 	}
 
 	////////////////////////////////////
