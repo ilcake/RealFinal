@@ -457,7 +457,7 @@ public class ServerDBwork {
 						rs.getString(6), rs.getString(7));
 				ucList.add(uc);
 			}
-			cm.close(con);
+			// cm.close(con);
 			if (ucList.size() == 0) {
 				return null;
 			} else {
@@ -476,7 +476,7 @@ public class ServerDBwork {
 							rs.getString(6), rs.getString(7));
 					ucList.add(uc);
 				}
-				cm.close(con);
+				// cm.close(con);
 				if (ucList.size() == 0) {
 					return null;
 				} else {
@@ -495,43 +495,26 @@ public class ServerDBwork {
 		UserComment uc = null;
 		ArrayList<UserComment> ucList = new ArrayList<>();
 		try {
-			String sql = "select * from usercomment where moviecd = (select moviecd from usercomment group by moviecd having count(userid) = (select max(count(userid)) from usercomment group by moviecd))";
+			String sql = "select title, thumb, count(userid) count from usercomment group by thumb, title order by count desc";
+
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				uc = new UserComment(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getString(3),
-						rs.getString(5), /// !!!!!!!
-						rs.getString(6), rs.getString(7));
+				uc = new UserComment("", "", 0.0, "", "", /// !!!!!!!
+						rs.getString(2), rs.getString(1));
 				ucList.add(uc);
+
+				// cm.close(con);
+
 			}
-			cm.close(con);
+		} catch (Exception e) {
+			e.printStackTrace();
 			if (ucList.size() == 0) {
 				return null;
 			} else {
 				return ucList.get(0);
 			}
-		} catch (Exception e) {
-			// e.printStackTrace();
-			System.out.println("ServerDBWork:511");
-			try {
-				String sql = "select * from usercomment where moviecd = (select moviecd from usercomment group by moviecd, rownum having count(userid) = (select max(count(userid)) from usercomment group by moviecd) and rownum = 1)";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					uc = new UserComment(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getString(3),
-							rs.getString(5), /// !!!!!!!
-							rs.getString(6), rs.getString(7));
-					ucList.add(uc);
-				}
-				cm.close(con);
-				if (ucList.size() == 0) {
-					return null;
-				} else {
-					return ucList.get(0);
-				}
-			} catch (Exception e1) {
-				e.printStackTrace();
-			}
+
 		}
 		cm.close(con);
 		return ucList.get(0);
@@ -542,16 +525,15 @@ public class ServerDBwork {
 		UserComment uc = null;
 		ArrayList<UserComment> ucList = new ArrayList<>();
 		try {
-			String sql = "select * from usercomment where moviecd = (select moviecd from userlike group by moviecd having count(userid) = (select max(count(userid)) from userlike group by moviecd))";
+			String sql = "select title, thumb, count(userid) count from userlike group by thumb, title order by count desc";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				uc = new UserComment(rs.getString(1), rs.getString(2), rs.getDouble(4), rs.getString(3),
-						rs.getString(5), /// !!!!!!!
-						rs.getString(6), rs.getString(7));
+				uc = new UserComment("", "", 0.0, "", "", /// !!!!!!!
+						rs.getString(2), rs.getString(1));
 				ucList.add(uc);
 			}
-			cm.close(con);
+			// cm.close(con);
 			if (ucList.size() == 0) {
 				return null;
 			} else {
@@ -570,7 +552,7 @@ public class ServerDBwork {
 							rs.getString(6), rs.getString(7));
 					ucList.add(uc);
 				}
-				cm.close(con);
+				// cm.close(con);
 				if (ucList.size() == 0) {
 					return null;
 				} else {

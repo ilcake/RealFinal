@@ -715,7 +715,7 @@ public class ClientGui extends JFrame { //
 		pn_grade.add(lb_grade);
 
 		ImageIcon trailerBt = new ImageIcon("img/trailerBt.png");
-		bt_trailer = new JButton("트레일러"){
+		bt_trailer = new JButton("트레일러") {
 			public void paintComponent(Graphics g) {
 				Dimension d = getSize();
 				g.drawImage(trailerBt.getImage(), 0, 0, d.width, d.height, null);
@@ -1499,6 +1499,8 @@ public class ClientGui extends JFrame { //
 		mv2Card.show(mv2, "mv2_1");
 
 		mg.getNums(whoAmI);
+		mg.getBestM();
+		mg.getBestC();
 	}
 
 	////////////////////////////////////
@@ -1539,7 +1541,7 @@ public class ClientGui extends JFrame { //
 		mv2_panel.revalidate();
 		this.revalidate();
 
-		mg.getBestM();// 여기가 맞나? 그리고
+		mg.getBestM();
 		mg.getBestC();
 		mg.getNums(whoAmI);
 	}
@@ -1602,6 +1604,9 @@ public class ClientGui extends JFrame { //
 		}
 		pn_UserLike.revalidate();
 
+		mg.getBestM();
+		mg.getBestC();
+		mg.getBestL();
 		mg.getNums(whoAmI);
 	}
 
@@ -1626,6 +1631,7 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestM(UserComment uc) {
+		System.out.println("별점 가져와용");
 		if (uc == null) {
 			thumb_bestM.setIcon(noImg);
 			thumb_bestM.setToolTipText("가장 별점이 높은 영화가 아직 없습니다.");
@@ -1649,6 +1655,7 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestC(UserComment uc) {
+		System.out.println("코멘트 가져와용");
 		if (uc == null) {
 			thumb_bestC.setIcon(noImg);
 			thumb_bestC.setToolTipText("코멘트가 달린 영화가 아직 없습니다.");
@@ -1671,6 +1678,7 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestL(UserComment uc) {
+		System.out.println("라이크 가져와용");
 		if (uc == null) {
 			thumb_bestL.setIcon(noImg);
 			thumb_bestL.setToolTipText("좋아요된 영화가 아직 없습니다.");
