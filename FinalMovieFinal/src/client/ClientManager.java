@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import org.mortbay.jetty.security.SSORealm;
 
 import client.chat.ChatGUI;
-import client.chat.ChatThread;
 import datas.Data;
 import datas.User;
 import vos.MovieBoxInfo;
