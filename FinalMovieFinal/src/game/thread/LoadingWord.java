@@ -24,7 +24,6 @@ public class LoadingWord extends Thread {
 	public void run() {
 		while (true) {
 			int time = (int) (Math.random() * 1500) + 200;
-			System.out.println(time);
 			try {
 				Thread.sleep(time);
 			} catch (InterruptedException e) {
@@ -40,7 +39,7 @@ public class LoadingWord extends Thread {
 
 	public void makeBird() {
 		xLoc = 620;
-		lb_word = new JLabel("Now Loading....");
+		lb_word = new JLabel("Thank you for watching....");
 		yLoc = 10;
 		lb_word.setFont(new Font("Arial", Font.PLAIN, 27));
 		lb_word.setBounds(xLoc, yLoc, 324, 47);

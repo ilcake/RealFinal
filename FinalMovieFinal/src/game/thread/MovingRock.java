@@ -22,7 +22,6 @@ public class MovingRock extends Thread {
 	public void run() {
 		while (true) {
 			int time = (int) (Math.random() * 1500) + 200;
-			System.out.println(time);
 			try {
 				Thread.sleep(time);
 			} catch (InterruptedException e) {

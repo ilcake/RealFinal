@@ -1,16 +1,11 @@
 package game.thread;
 
-import java.awt.Rectangle;
-
-import javax.swing.JLabel;
-
 import game.Game;
 
 public class BoundCheck extends Thread {
 	private Game gg;
 	private int xlo;
 	private int ylo;
-	private int count;
 	private boolean flag;
 
 	public int getXlo() {
@@ -54,7 +49,6 @@ public class BoundCheck extends Thread {
 		int may = gg.getMyY();
 		if (ma + 85 >= xlo && xlo > ma) {
 			if (ylo > 100) {
-				System.out.println("it hit");
 			}
 		}
 

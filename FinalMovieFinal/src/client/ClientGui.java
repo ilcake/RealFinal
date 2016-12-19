@@ -148,6 +148,7 @@ public class ClientGui extends JFrame { //
 	private Game gm;
 
 	private JLabel thumb_bestM, thumb_bestC, thumb_bestL; // 추가1
+	private JLabel lb_hid;
 
 	public ArrayList<MovieSearchInfo> getScList() {
 		return scList;
@@ -377,6 +378,10 @@ public class ClientGui extends JFrame { //
 		thumb_bestL = new JLabel();
 		thumb_bestL.setBounds(324, 371, 70, 84);
 		mm1_1.add(thumb_bestL);
+
+		lb_hid = new JLabel("");
+		lb_hid.setBounds(0, 0, 40, 40);
+		mm1_1.add(lb_hid);
 		/*
 		 * JPanel panel = new JPanel(); panel.setBorder(new LineBorder(new
 		 * Color(0, 0, 0))); panel.setBounds(44, 374, 360, 78);
@@ -538,17 +543,17 @@ public class ClientGui extends JFrame { //
 		ImageIcon searchBt = new ImageIcon("img/searchBt.png");
 
 		lb_likeNum = new JLabel("0");
-		lb_likeNum.setForeground(SystemColor.activeCaption);
+		lb_likeNum.setForeground(new Color(153, 0, 51));
 		lb_likeNum.setHorizontalAlignment(SwingConstants.RIGHT);
 		lb_likeNum.setFont(new Font("함초롬돋움", Font.BOLD, 26));
-		lb_likeNum.setBounds(143, 385, 58, 50);
+		lb_likeNum.setBounds(139, 385, 58, 50);
 		mn2.add(lb_likeNum);
 
 		lb_commentNum = new JLabel("0");
-		lb_commentNum.setForeground(SystemColor.activeCaption);
+		lb_commentNum.setForeground(new Color(153, 0, 51));
 		lb_commentNum.setHorizontalAlignment(SwingConstants.RIGHT);
 		lb_commentNum.setFont(new Font("함초롬돋움", Font.BOLD, 26));
-		lb_commentNum.setBounds(275, 385, 58, 48);
+		lb_commentNum.setBounds(274, 386, 58, 48);
 		mn2.add(lb_commentNum);
 		bt_search = new JButton("SEARCH") {
 			public void paintComponent(Graphics g) {
@@ -913,6 +918,7 @@ public class ClientGui extends JFrame { //
 		lb_mv2_minus.addMouseListener(ma);
 		lb_mv2_plus.addMouseListener(ma);
 		bt_trailer.addMouseListener(ma);
+		lb_hid.addMouseListener(ma);
 		this.addComponentListener(wa);
 	}
 
@@ -1024,6 +1030,8 @@ public class ClientGui extends JFrame { //
 			} else if (e.getSource() == bt_trailer) {
 				String searchString = (msi.getMvTitle() + ", 영화, 공식 트레일러, 예고편");
 				mg.searchYouTube(searchString);
+			} else if (e.getSource() == lb_hid) {
+				gm = new Game();
 			}
 		}
 
@@ -1616,7 +1624,6 @@ public class ClientGui extends JFrame { //
 		} else {
 			try {
 				ImageIcon bestM = new ImageIcon(ImageIO.read(new URL(uc.getThumb())));
-				System.out.println("ClientGUI.setBestsM : " + uc.getThumb());
 				Image image = bestM.getImage();
 				image = image.getScaledInstance(70, 84, Image.SCALE_SMOOTH);
 				bestM = new ImageIcon(image);
@@ -1640,7 +1647,6 @@ public class ClientGui extends JFrame { //
 		} else {
 			try {
 				ImageIcon bestC = new ImageIcon(ImageIO.read(new URL(uc.getThumb())));
-				System.out.println("ClientGUI.setBestsC : " + uc.getThumb());
 				Image image = bestC.getImage();
 				image = image.getScaledInstance(70, 84, Image.SCALE_SMOOTH);
 				bestC = new ImageIcon(image);
@@ -1663,7 +1669,6 @@ public class ClientGui extends JFrame { //
 		} else {
 			try {
 				ImageIcon bestL = new ImageIcon(ImageIO.read(new URL(uc.getThumb())));
-				System.out.println("ClientGUI.setBestsL : " + uc.getThumb());
 				Image image = bestL.getImage();
 				image = image.getScaledInstance(70, 84, Image.SCALE_SMOOTH);
 				bestL = new ImageIcon(image);
