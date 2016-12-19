@@ -19,13 +19,16 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import javax.swing.JProgressBar;
 
-public class Game extends JFrame implements KeyListener {
+public class Game extends JFrame implements KeyListener, Runnable {
 	public JLabel lb_main;
 	private JLabel lb_ground;
 	public int yLoc;
@@ -37,6 +40,24 @@ public class Game extends JFrame implements KeyListener {
 	public Game me;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
+	private JProgressBar progressBar;
+	private int hp;
+
+	public JProgressBar getProgressBar() {
+		return progressBar;
+	}
+
+	public void setProgressBar(JProgressBar progressBar) {
+		this.progressBar = progressBar;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
 
 	public int getMyY() {
 		return myY;
@@ -47,25 +68,8 @@ public class Game extends JFrame implements KeyListener {
 	}
 
 	public Game() {
-		addWindowListener(new WindowAdapter() {
+		hp = 100;
 
-			@SuppressWarnings("deprecation")
-			@Override
-			public void windowClosed(WindowEvent e) {
-				mr.stop();
-				mr.interrupt();
-				me.dispose();
-			}
-
-			@SuppressWarnings("deprecation")
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				mr.stop();
-				mr.interrupt();
-				me.dispose();
-
-			}
-		});
 		isJumped = false;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +88,15 @@ public class Game extends JFrame implements KeyListener {
 		lb_main.setBounds(xLoc, yLoc, 68, 128);
 		lb_main.setIcon(new ImageIcon("img/game/dino.gif"));
 		gmPanle.add(lb_main);
+
+		progressBar = new JProgressBar();
+		progressBar.setStringPainted(true);
+		progressBar.setMaximum(100);
+		progressBar.setValue(hp);
+		progressBar.setBackground(new Color(0, 153, 51));
+		progressBar.setForeground(new Color(0, 153, 51));
+		progressBar.setBounds(14, 291, 196, 25);
+		gmPanle.add(progressBar);
 		////////////
 		// JLabel lb_rockd = new JLabel();
 		// lb_rockd.setBounds(600, 225, 61, 36);
@@ -109,6 +122,9 @@ public class Game extends JFrame implements KeyListener {
 		int locHeight = (int) ((d.getHeight() - 360) / 2);
 		setLocation(locWidth, locHeight);
 
+		Thread th2 = new Thread(this);
+		th2.start();
+
 	}
 
 	@Override
@@ -126,7 +142,6 @@ public class Game extends JFrame implements KeyListener {
 				isJumped = true;
 			}
 		}
-
 	}
 
 	@Override
@@ -135,4 +150,23 @@ public class Game extends JFrame implements KeyListener {
 
 	}
 
+	@Override
+	public void run() {
+		boolean flag = true;
+		while (flag) {
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			if (hp < 0) {
+				JOptionPane.showMessageDialog(null, "게임오버~");
+				flag = false;
+				this.dispose();
+			}
+		}
+
+	}
 }

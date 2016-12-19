@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,6 +23,8 @@ import vos.UserComment;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.Color;
 
 public class CommentDetail extends JDialog {
 
@@ -30,8 +34,12 @@ public class CommentDetail extends JDialog {
 	private String userID, userText, movieCD, userPic, thumb, title;
 	private double grade;
 	private JLabel lb_stars;
+	private JLabel lb_userCm;
+	private ClientManager mg;
+	private JLabel lb_userLk;
 
-	public CommentDetail(UserComment userComment) {
+	public CommentDetail(UserComment userComment, ClientManager mg) {
+		this.mg = mg;
 
 		this.userID = userComment.getUserID();
 		this.userText = userComment.getUserText();
@@ -43,7 +51,7 @@ public class CommentDetail extends JDialog {
 
 		setTitle(userID + "'s.. Comment about " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(userPic));// 아이콘
-		setBounds(0, 0, 330, 362);
+		setBounds(0, 0, 332, 382);
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		setView();
 		int xlo = (int) ((d.getWidth() - 400) / 2);
@@ -99,6 +107,27 @@ public class CommentDetail extends JDialog {
 		ta_comment.setEditable(false);
 		ta_comment.setLineWrap(true);
 
+		lb_userCm = new JLabel("다른 코멘트..");
+		lb_userCm.setForeground(new Color(0, 0, 153));
+		lb_userCm.setBounds(208, 320, 93, 18);
+		background.add(lb_userCm);
+
+		lb_userLk = new JLabel("다른 좋아요..");
+		lb_userLk.setForeground(new Color(0, 0, 153));
+		lb_userLk.setBounds(12, 320, 93, 18);
+		background.add(lb_userLk);
+
+		lb_userCm.addMouseListener(new mcl());
+		lb_userLk.addMouseListener(new mcl());
+
+	}
+
+	public JLabel getLb_userCm() {
+		return lb_userCm;
+	}
+
+	public void setLb_userCm(JLabel lb_userCm) {
+		this.lb_userCm = lb_userCm;
 	}
 
 	public void setImg() {
@@ -159,5 +188,20 @@ public class CommentDetail extends JDialog {
 		image = image.getScaledInstance(136, 34, Image.SCALE_SMOOTH);
 		starLabel.setImage(image);
 		return starLabel;
+	}
+
+	public class mcl extends MouseAdapter {
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			if (e.getSource() == lb_userCm) {
+				System.out.println("!!");
+				mg.getMyComment(userID);
+			} else if (e.getSource() == lb_userLk) {
+				System.out.println("??");
+				mg.getUserLikebyID(userID);
+			}
+		}
+
 	}
 }

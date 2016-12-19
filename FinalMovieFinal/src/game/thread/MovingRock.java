@@ -44,8 +44,6 @@ public class MovingRock extends Thread {
 		gg.gmPanle.add(lb_rock);
 		gg.revalidate();
 		gg.repaint();
-		bc = new BoundCheck(gg, xLoc, yLoc);
-		new Thread(bc).start();
 	}
 
 	public void moving() {
@@ -60,7 +58,6 @@ public class MovingRock extends Thread {
 			}
 			xLoc -= 10;
 			lb_rock.setBounds(xLoc, yLoc, 70, 50);
-			bc.setXlo(xLoc);
 			gg.repaint();
 			gg.revalidate();
 		}

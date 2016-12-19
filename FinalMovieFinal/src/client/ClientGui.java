@@ -947,7 +947,7 @@ public class ClientGui extends JFrame { //
 				int wh = mBoxTable.getSelectedRow();
 				if (wh != -1) {
 					String gC = dblist.get(wh).getMovieCd();
-					String searchString = (dblist.get(wh).getMovieNm() + ", 영화, 공식 트레일러");
+					String searchString = (dblist.get(wh).getMovieNm() + ", 영화, 공식 트레일러, 예고편");
 					mainCard.show(mainBOARD, "nowLoading");
 					mg.searchYouTube(searchString);
 
@@ -992,12 +992,9 @@ public class ClientGui extends JFrame { //
 			} else if (e.getSource() == bt_mm1_4Return) {
 				mn1Card.show(mn1, "mm1_1");
 			} else if (e.getSource() == likeIcon) {
-				mn1Card.show(mn1, "mm1_3");
-				searchRBack.setVisible(false);
 				///// 내가 좋아요 누른 영화들 확인
 				mg.getUserLikebyID(whoAmI);
 			} else if (e.getSource() == commentIcon) {
-				mn1Card.show(mn1, "mm1_4");
 				mg.getMyComment(whoAmI);
 				searchRBack.setVisible(false);
 				///// 내가 남긴 코멘트 확인
@@ -1034,7 +1031,7 @@ public class ClientGui extends JFrame { //
 			} else if (e.getSource() instanceof MyText) {
 				MyText itsMe = (MyText) e.getSource();
 				// System.out.println(itsMe.getComment()); // 여기야여기!!지혜야 여기봐라!!!
-				CommentDetail cd = new CommentDetail(itsMe.getComment());
+				CommentDetail cd = new CommentDetail(itsMe.getComment(), mg);
 			} else if (e.getSource() == bt_trailer) {
 				String searchString = (msi.getMvTitle() + ", 영화, 공식 트레일러, 예고편");
 				mg.searchYouTube(searchString);
@@ -1552,7 +1549,7 @@ public class ClientGui extends JFrame { //
 		pn_UserComment.setPreferredSize(ucSize);
 		Dimension d = new Dimension(ucSize.getSize());
 		int size = usc.size();
-		int height = 100;
+		int height = 85;
 		if (size == 0)
 			return;
 		UserComment c = null;
@@ -1560,7 +1557,7 @@ public class ClientGui extends JFrame { //
 			c = usc.get(i);
 			PnUserComment pn = new PnUserComment(c);
 			setPreferredSize(new Dimension((int) (ucSize.getWidth() - 65), 80));
-			if (i > 3) {
+			if (i > 2) {
 				d.setSize(d.getWidth(), d.getHeight() + height);
 				pn_UserComment.setPreferredSize(d);
 			}
@@ -1569,6 +1566,8 @@ public class ClientGui extends JFrame { //
 		}
 		pn_UserComment.revalidate();
 		this.revalidate();
+		mainCard.show(mainBOARD, "pnMain");
+		mn1Card.show(mn1, "mm1_4");
 	}
 
 	public void setCommentML(JPanel pn) {
@@ -1608,6 +1607,11 @@ public class ClientGui extends JFrame { //
 		mg.getBestC();
 		mg.getBestL();
 		mg.getNums(whoAmI);
+
+		mainCard.show(mainBOARD, "pnMain");
+		mn1Card.show(mn1, "mm1_3");
+		searchRBack.setVisible(false);
+
 	}
 
 	public void searchYoutubeReaction(String utb) {

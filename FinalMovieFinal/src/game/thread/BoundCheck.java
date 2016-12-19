@@ -7,6 +7,15 @@ public class BoundCheck extends Thread {
 	private int xlo;
 	private int ylo;
 	private boolean flag;
+	private int eney;
+
+	public int getEney() {
+		return eney;
+	}
+
+	public void setEney(int eney) {
+		this.eney = eney;
+	}
 
 	public int getXlo() {
 		return xlo;
@@ -32,15 +41,14 @@ public class BoundCheck extends Thread {
 
 	@Override
 	public void run() {
-		flag = true;
-		while (flag) {
+		while (true) {
 			checkBounds();
 		}
 	}
 
 	public void checkBounds() {
 		try {
-			Thread.sleep(50);
+			Thread.sleep(30);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +56,11 @@ public class BoundCheck extends Thread {
 		int ma = gg.xLoc;
 		int may = gg.getMyY();
 		if (ma + 85 >= xlo && xlo > ma) {
-			if (ylo > 100) {
+			if (may + 128 >= eney + 20 && may < eney + 20) {
+				// if (may < eney + 40 || may + 128 > eney - 10) {
+				int now = gg.getHp() - 5;
+				gg.setHp(now);
+				gg.getProgressBar().setValue(now);
 			}
 		}
 

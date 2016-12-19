@@ -36,9 +36,14 @@ public class FlyingBird extends Thread {
 	}
 
 	public void makeBird() {
+		int where = (int) (Math.random() * 500);
+		if (where >= 250) {
+			yLoc = 80;
+		} else {
+			yLoc = 205;
+		}
 		xLoc = 610;
 		lb_bird = new JLabel();
-		yLoc = 80;
 		lb_bird.setBounds(xLoc, yLoc, 50, 50);
 		lb_bird.setIcon(new ImageIcon("img/game/batt.gif"));
 		gg.gmPanle.add(lb_bird);
@@ -49,7 +54,7 @@ public class FlyingBird extends Thread {
 	}
 
 	public void moving() {
-		speed = (int) (Math.random() * 20 + 5);
+		speed = (int) (Math.random() * 15 + 10);
 		while (xLoc > -80) {
 			try {
 				Thread.sleep(30);
@@ -61,6 +66,7 @@ public class FlyingBird extends Thread {
 			lb_bird.setBounds(xLoc, yLoc, 50, 50);
 			bc.setXlo(xLoc);
 			bc.setYlo(yLoc);
+			bc.setEney(yLoc);
 			lb_bird.repaint();
 			gg.repaint();
 			gg.revalidate();

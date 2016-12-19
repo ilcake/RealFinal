@@ -1,20 +1,19 @@
 package game.thread;
 
-import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import game.Game;
 
-public class LoadingWord extends Thread {
+public class Enemy extends Thread {
 	private Game gg;
 	public int xLoc;
 	public int yLoc;
-	private JLabel lb_word;
+	private JLabel lb_ene;
 	private int speed;
+	private BoundCheck bc;
 
-	public LoadingWord(Game gg) {
+	public Enemy(Game gg) {
 		this.gg = gg;
 
 	}
@@ -30,35 +29,40 @@ public class LoadingWord extends Thread {
 				e.printStackTrace();
 			}
 
-			makeBird();
+			makeEnemy();
 			moving();
 		}
 
 	}
 
-	public void makeBird() {
-		xLoc = 620;
-		lb_word = new JLabel("Thank you for watching....");
-		yLoc = 10;
-		lb_word.setFont(new Font("Arial", Font.PLAIN, 27));
-		lb_word.setBounds(xLoc, yLoc, 324, 47);
-		gg.gmPanle.add(lb_word);
+	public void makeEnemy() {
+		xLoc = 610;
+		lb_ene = new JLabel();
+		yLoc = 210;
+		lb_ene.setBounds(xLoc, yLoc, 50, 50);
+		lb_ene.setIcon(new ImageIcon("img/game/giphy.gif"));
+		gg.gmPanle.add(lb_ene);
 		gg.revalidate();
 		gg.repaint();
+		bc = new BoundCheck(gg, xLoc, yLoc);
+		Thread bcth = new Thread(bc);
+		bcth.run();
+
 	}
 
 	public void moving() {
-
-		while (xLoc > -300) {
+		// speed = (int) (Math.random() * 20 + 5);
+		// System.out.println("speed " + speed);
+		while (xLoc > -60) {
 			try {
 				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			xLoc -= 8;
-			lb_word.setBounds(xLoc, yLoc, 324, 47);
-			lb_word.repaint();
+			xLoc -= 7;
+			bc.setXlo(xLoc);
+			lb_ene.setBounds(xLoc, yLoc, 50, 40);
 			gg.repaint();
 			gg.revalidate();
 		}

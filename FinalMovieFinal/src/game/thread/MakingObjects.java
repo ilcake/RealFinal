@@ -15,7 +15,7 @@ public class MakingObjects extends Thread {
 		new Thread(new MovingFlower(gg)).start();
 		new Thread(new Clouds(gg)).start();
 		new Thread(new LoadingWord(gg)).start();
-
+		new Thread(new Enemy(gg)).start();
 	}
 
 }
