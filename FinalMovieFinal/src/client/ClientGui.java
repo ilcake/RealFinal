@@ -1538,12 +1538,12 @@ public class ClientGui extends JFrame { //
 			pn.getTa_Te().addMouseListener(ma);
 			mv2_panel.add(pn);
 		}
-		mv2_panel.revalidate();
-		this.revalidate();
 
 		mg.getBestM();
 		mg.getBestC();
 		mg.getNums(whoAmI);
+		mv2_panel.revalidate();
+		this.revalidate();
 	}
 
 	////////////////////////////////////
