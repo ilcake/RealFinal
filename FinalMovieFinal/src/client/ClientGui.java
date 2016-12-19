@@ -58,6 +58,8 @@ import vos.Stars;
 
 import javax.swing.ScrollPaneConstants;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClientGui extends JFrame { //
 	////
@@ -712,8 +714,14 @@ public class ClientGui extends JFrame { //
 		lb_grade.setBounds(54, 7, 115, 25);
 		pn_grade.add(lb_grade);
 
-		bt_trailer = new JButton("트레일러");
-		bt_trailer.setBounds(31, 435, 107, 27);
+		ImageIcon trailerBt = new ImageIcon("img/trailerBt.png");
+		bt_trailer = new JButton("트레일러"){
+			public void paintComponent(Graphics g) {
+				Dimension d = getSize();
+				g.drawImage(trailerBt.getImage(), 0, 0, d.width, d.height, null);
+			}
+		};
+		bt_trailer.setBounds(31, 435, 107, 33);
 		mv1.add(bt_trailer);
 
 		JLabel lblNewLabel_3 = new JLabel("@Copywrite by Park, Choe  ");
