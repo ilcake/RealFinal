@@ -38,7 +38,7 @@ public class Enemy extends Thread {
 	public void makeEnemy() {
 		lb_ene = new JLabel();
 		xLoc = 610;
-		yLoc = 50;
+		yLoc = 200;
 		lb_ene.setBounds(xLoc, yLoc, 50, 50);
 		lb_ene.setIcon(new ImageIcon("img/game/giphy.gif"));
 		gg.gmPanle.add(lb_ene);
@@ -61,6 +61,7 @@ public class Enemy extends Thread {
 			}
 			xLoc -= 6;
 			bc.setXlo(xLoc);
+			bc.setEney(yLoc);
 			lb_ene.setBounds(xLoc, yLoc, 50, 50);
 			gg.repaint();
 			gg.revalidate();

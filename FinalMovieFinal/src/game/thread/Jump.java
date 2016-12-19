@@ -1,5 +1,9 @@
 package game.thread;
 
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JLabel;
 
 import game.Game;
@@ -23,6 +27,14 @@ public class Jump extends Thread {
 	}
 
 	public void jump() {
+		try {
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File("c://jumping.wav")));
+			clip.start();
+			Thread.sleep(3);
+		} catch (Exception exc) {
+			exc.printStackTrace(System.out);
+		}
 		int count = 0;
 		while (count != 10) {
 			try {

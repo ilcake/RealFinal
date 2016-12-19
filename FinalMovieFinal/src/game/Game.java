@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import game.thread.BGM;
 import game.thread.BoundCheck;
 import game.thread.Jump;
 import game.thread.MakingObjects;
@@ -124,6 +125,7 @@ public class Game extends JFrame implements KeyListener, Runnable {
 
 		Thread th2 = new Thread(this);
 		th2.start();
+		new Thread(new BGM()).start();
 
 	}
 
