@@ -1380,6 +1380,7 @@ public class ClientGui extends JFrame { //
 		mg.getIsLike(whoAmI, msi.getMvCode());
 
 		mg.getBestL();
+		mg.getNums(whoAmI);
 	}
 
 	public void setImgicons() {
@@ -1532,6 +1533,7 @@ public class ClientGui extends JFrame { //
 
 		mg.getBestM();// 여기가 맞나? 그리고
 		mg.getBestC();
+		mg.getNums(whoAmI);
 	}
 
 	////////////////////////////////////
