@@ -12,10 +12,10 @@ public class MakingObjects extends Thread {
 	public void run() {
 		new Thread(new FlyingBird(gg)).start();
 		new Thread(new MovingRock(gg)).start();
+		new Thread(new Enemy(gg)).start();
 		new Thread(new MovingFlower(gg)).start();
 		new Thread(new Clouds(gg)).start();
 		new Thread(new LoadingWord(gg)).start();
-		new Thread(new Enemy(gg)).start();
 	}
 
 }

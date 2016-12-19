@@ -41,7 +41,8 @@ public class BoundCheck extends Thread {
 
 	@Override
 	public void run() {
-		while (true) {
+		flag = true;
+		while (flag) {
 			checkBounds();
 		}
 	}
@@ -55,13 +56,16 @@ public class BoundCheck extends Thread {
 		}
 		int ma = gg.xLoc;
 		int may = gg.getMyY();
-		if (ma + 85 >= xlo && xlo > ma) {
+		if (ma + 60 >= xlo && xlo + 10 > ma) {
 			if (may + 128 >= eney + 20 && may < eney + 20) {
 				// if (may < eney + 40 || may + 128 > eney - 10) {
 				int now = gg.getHp() - 5;
 				gg.setHp(now);
 				gg.getProgressBar().setValue(now);
 			}
+		}
+		if (gg.getHp() < 0) {
+			flag = false;
 		}
 
 	}

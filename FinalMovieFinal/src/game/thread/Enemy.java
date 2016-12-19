@@ -21,7 +21,7 @@ public class Enemy extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			int time = (int) (Math.random() * 1500) + 200;
+			int time = (int) (Math.random() * 1900) + 200;
 			try {
 				Thread.sleep(time);
 			} catch (InterruptedException e) {
@@ -36,17 +36,16 @@ public class Enemy extends Thread {
 	}
 
 	public void makeEnemy() {
-		xLoc = 610;
 		lb_ene = new JLabel();
-		yLoc = 210;
+		xLoc = 610;
+		yLoc = 50;
 		lb_ene.setBounds(xLoc, yLoc, 50, 50);
 		lb_ene.setIcon(new ImageIcon("img/game/giphy.gif"));
 		gg.gmPanle.add(lb_ene);
 		gg.revalidate();
 		gg.repaint();
 		bc = new BoundCheck(gg, xLoc, yLoc);
-		Thread bcth = new Thread(bc);
-		bcth.run();
+		new Thread(bc).start();
 
 	}
 
@@ -60,9 +59,9 @@ public class Enemy extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			xLoc -= 7;
+			xLoc -= 6;
 			bc.setXlo(xLoc);
-			lb_ene.setBounds(xLoc, yLoc, 50, 40);
+			lb_ene.setBounds(xLoc, yLoc, 50, 50);
 			gg.repaint();
 			gg.revalidate();
 		}
