@@ -1631,7 +1631,6 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestM(UserComment uc) {
-		System.out.println("별점 가져와용");
 		if (uc == null) {
 			thumb_bestM.setIcon(noImg);
 			thumb_bestM.setToolTipText("가장 별점이 높은 영화가 아직 없습니다.");
@@ -1655,7 +1654,6 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestC(UserComment uc) {
-		System.out.println("코멘트 가져와용");
 		if (uc == null) {
 			thumb_bestC.setIcon(noImg);
 			thumb_bestC.setToolTipText("코멘트가 달린 영화가 아직 없습니다.");
@@ -1678,7 +1676,6 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setBestL(UserComment uc) {
-		System.out.println("라이크 가져와용");
 		if (uc == null) {
 			thumb_bestL.setIcon(noImg);
 			thumb_bestL.setToolTipText("좋아요된 영화가 아직 없습니다.");
