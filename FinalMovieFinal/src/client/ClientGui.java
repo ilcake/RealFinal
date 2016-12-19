@@ -1611,10 +1611,8 @@ public class ClientGui extends JFrame { //
 	}
 
 	public void setNumsReaction(ArrayList<Integer> nLi) {
-		if (nLi.size() == 2) {
-			lb_commentNum.setText(nLi.get(1) + "");
-			lb_likeNum.setText(nLi.get(0) + "");
-		}
+		lb_likeNum.setText(nLi.get(0) + "");
+		lb_commentNum.setText(nLi.get(1) + "");
 	}
 
 	public void setBestM(UserComment uc) {

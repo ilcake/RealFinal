@@ -423,13 +423,17 @@ public class ServerDBwork {
 		ArrayList<Integer> numList = new ArrayList<>();
 		Connection con = new ConnectionManager().getConnection();
 		try {
-			String sql = "select count(userid) from usercomment where userid=? union select count(userid) from userlike where userid=?";
+			// String sql = "select count(userid) from usercomment where
+			// userid=? union select count(userid) from userlike where
+			// userid=?";
+			String sql = "select (select count(userid) from userlike where userid=?), (select count(userid) from usercomment where userid=?) from dual";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				numList.add(rs.getInt(1));
+				numList.add(rs.getInt(2));
 			}
 		} catch (Exception e) {
 
@@ -438,7 +442,7 @@ public class ServerDBwork {
 
 		return numList;
 	}
-	
+
 	public UserComment getBestM() { // 최고평점가진 usercomment 가져오기
 		Connection con = new ConnectionManager().getConnection();
 		UserComment uc = null;
@@ -454,13 +458,13 @@ public class ServerDBwork {
 				ucList.add(uc);
 			}
 			cm.close(con);
-			if (ucList.size()==0) {
+			if (ucList.size() == 0) {
 				return null;
 			} else {
 				return ucList.get(0);
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("ServerDBWork:464");
 			try {
 				String sql = "select * from usercomment where moviecd = (select moviecd from usercomment group by moviecd, rownum having avg(grade) = (select max(avg(grade)) from usercomment group by moviecd) and rownum = 1)";
@@ -473,7 +477,7 @@ public class ServerDBwork {
 					ucList.add(uc);
 				}
 				cm.close(con);
-				if (ucList.size()==0) {
+				if (ucList.size() == 0) {
 					return null;
 				} else {
 					return ucList.get(0);
@@ -501,13 +505,13 @@ public class ServerDBwork {
 				ucList.add(uc);
 			}
 			cm.close(con);
-			if (ucList.size()==0) {
+			if (ucList.size() == 0) {
 				return null;
 			} else {
 				return ucList.get(0);
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("ServerDBWork:511");
 			try {
 				String sql = "select * from usercomment where moviecd = (select moviecd from usercomment group by moviecd, rownum having count(userid) = (select max(count(userid)) from usercomment group by moviecd) and rownum = 1)";
@@ -520,7 +524,7 @@ public class ServerDBwork {
 					ucList.add(uc);
 				}
 				cm.close(con);
-				if (ucList.size()==0) {
+				if (ucList.size() == 0) {
 					return null;
 				} else {
 					return ucList.get(0);
@@ -548,13 +552,13 @@ public class ServerDBwork {
 				ucList.add(uc);
 			}
 			cm.close(con);
-			if (ucList.size()==0) {
+			if (ucList.size() == 0) {
 				return null;
 			} else {
 				return ucList.get(0);
 			}
 		} catch (Exception e) {
-//			e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("ServerDBWork:558");
 			try {
 				String sql = "select * from usercomment where moviecd = (select moviecd from userlike group by moviecd, rownum having count(userid) = (select max(count(userid)) from userlike group by moviecd) and rownum = 1)";
@@ -567,7 +571,7 @@ public class ServerDBwork {
 					ucList.add(uc);
 				}
 				cm.close(con);
-				if (ucList.size()==0) {
+				if (ucList.size() == 0) {
 					return null;
 				} else {
 					return ucList.get(0);
