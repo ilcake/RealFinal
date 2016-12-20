@@ -125,7 +125,7 @@ public class Game extends JFrame implements KeyListener, Runnable {
 
 		Thread th2 = new Thread(this);
 		th2.start();
-		new Thread(new BGM()).start();
+		new Thread(new BGM(this)).start();
 
 	}
 

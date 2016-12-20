@@ -6,9 +6,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import datas.Data;
-import datas.User;
 import vos.UserComment;
 import vos.MovieSearchInfo;
+import vos.User;
 
 public class ServerThread implements Runnable {
 	private Socket sk;

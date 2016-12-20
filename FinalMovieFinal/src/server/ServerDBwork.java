@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 import datas.ConnectionManager;
 import datas.Data;
-import datas.User;
 import server.api.Search;
 import server.api.SearchBy;
 import vos.UserComment;
 import vos.MovieBoxInfo;
 import vos.MovieSearchInfo;
+import vos.User;
 
 public class ServerDBwork {
 	private ConnectionManager cm;

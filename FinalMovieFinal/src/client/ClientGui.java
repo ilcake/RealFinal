@@ -45,7 +45,6 @@ import javax.swing.table.DefaultTableModel;
 
 import client.chat.ChatGUI;
 import datas.Data;
-import datas.User;
 import game.Game;
 import vos.UserComment;
 import vos.MovieBoxInfo;
@@ -55,6 +54,7 @@ import vos.PnComment;
 import vos.PnLike;
 import vos.PnUserComment;
 import vos.Stars;
+import vos.User;
 
 import javax.swing.ScrollPaneConstants;
 import java.awt.SystemColor;

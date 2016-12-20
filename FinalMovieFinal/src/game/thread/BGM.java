@@ -8,16 +8,21 @@ import java.net.URL;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import game.Game;
+
 public class BGM extends Thread {
-	public BGM() {
+	private Game gg;
+
+	public BGM(Game gg) {
+		this.gg = gg;
 
 	}
 
 	public void run() {
-		while (true) {
+		while (gg != null) {
 			try {
 				Clip clip = AudioSystem.getClip();
-				clip.open(AudioSystem.getAudioInputStream(new File("c://path.wav")));
+				clip.open(AudioSystem.getAudioInputStream(new File("img/game/path.wav")));
 				clip.start();
 
 				// clip.start();

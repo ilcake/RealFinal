@@ -1,4 +1,4 @@
-package datas;
+package vos;
 
 import java.io.Serializable;
 

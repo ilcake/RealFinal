@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import datas.User;
 import vos.MovieBoxInfo;
+import vos.User;
 
 import java.awt.BorderLayout;
 import javax.swing.JPanel;

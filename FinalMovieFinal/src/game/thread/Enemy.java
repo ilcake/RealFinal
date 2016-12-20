@@ -20,7 +20,7 @@ public class Enemy extends Thread {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (gg != null) {
 			int time = (int) (Math.random() * 1900) + 200;
 			try {
 				Thread.sleep(time);

@@ -42,7 +42,7 @@ public class BoundCheck extends Thread {
 	@Override
 	public void run() {
 		flag = true;
-		while (flag) {
+		while (gg != null) {
 			checkBounds();
 		}
 	}

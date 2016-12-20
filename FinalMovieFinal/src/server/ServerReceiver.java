@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import datas.User;
+import vos.User;
 
 public class ServerReceiver {
 	private ServerSocket ss;

@@ -11,9 +11,9 @@ import org.mortbay.jetty.security.SSORealm;
 
 import client.chat.ChatGUI;
 import datas.Data;
-import datas.User;
 import vos.MovieBoxInfo;
 import vos.MovieSearchInfo;
+import vos.User;
 import vos.UserComment;
 
 public class ClientManager {

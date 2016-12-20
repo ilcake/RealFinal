@@ -29,7 +29,7 @@ public class Jump extends Thread {
 	public void jump() {
 		try {
 			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(new File("c://jumping.wav")));
+			clip.open(AudioSystem.getAudioInputStream(new File("img/game/jumping.wav")));
 			clip.start();
 			Thread.sleep(3);
 		} catch (Exception exc) {
