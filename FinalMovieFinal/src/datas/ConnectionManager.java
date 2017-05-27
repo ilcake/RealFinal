@@ -14,6 +14,7 @@ public class ConnectionManager {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.println("here!");
 			e.printStackTrace();
 		}
 	}

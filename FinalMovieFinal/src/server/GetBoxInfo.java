@@ -41,7 +41,7 @@ public class GetBoxInfo {
 			sql = "drop table movieboxinfo";
 			st = con.createStatement();
 			st.executeUpdate(sql);
-			sql = "create table movieboxinfo (moviecd varchar2(30), movienm varchar2(50), directornm varchar2(50), opendt varchar2(30), rank number(5), constraint movieb_pk primary key (moviecd))";
+			sql = "create table movieboxinfo (moviecd varchar2(30), movienm varchar2(100), directornm varchar2(50), opendt varchar2(30), rank number(5), constraint movieb_pk primary key (moviecd))";
 			st = con.createStatement();
 			st.executeUpdate(sql);
 
